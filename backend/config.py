@@ -1,3 +1,4 @@
+# backend/config.py
 import os
 
 class Settings:
@@ -6,9 +7,5 @@ class Settings:
     DB_USER = os.getenv("DB_USER", "root")
     DB_PASSWORD = os.getenv("DB_PASSWORD", "")
     DB_NAME = os.getenv("DB_NAME", "reencaminhamento_produtos")
-
-    DB_POOL_SIZE = int(os.getenv("DB_POOL_SIZE", 10))
-    DB_MAX_OVERFLOW = int(os.getenv("DB_MAX_OVERFLOW", 20))
-    DEBUG = bool(int(os.getenv("DEBUG", 1)))  # 1 = True, 0 = False
 
 settings = Settings()
