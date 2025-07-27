@@ -4,24 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45cec708-5319-4788-af64-89369b9f96f9" name="Changes" comment="1 base">
-      <change afterPath="$PROJECT_DIR$/BOT/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BOT/config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BOT/controllers/messageController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BOT/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BOT/listarContatosGrupos.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BOT/services/aiService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BOT/services/apiService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BOT/tests/simulateMessage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/BOT.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BOT.iml" afterDir="false" />
+    <list default="true" id="45cec708-5319-4788-af64-89369b9f96f9" name="Changes" comment="o bot agoara pega nos produtos do fornecedor autorizado e manda para a IA do proprio whatssapp e ele edita e logo depois o bot pega amensagem da IA e manda para o grupo de vendas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOT/.env" beforeDir="false" afterPath="$PROJECT_DIR$/BOT/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOT/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/BOT/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOT/controllers/messageController.js" beforeDir="false" afterPath="$PROJECT_DIR$/BOT/controllers/messageController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOT/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/BOT/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +62,7 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/JR5/PycharmProjects/PythonProject/backend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/JR5/OneDrive/Documentos/CURSOR CLONES/BOT&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -186,6 +174,9 @@
       <workItem from="1752105192967" duration="3714000" />
       <workItem from="1752109128838" duration="2093000" />
       <workItem from="1752111324156" duration="10291000" />
+      <workItem from="1753460810140" duration="1964000" />
+      <workItem from="1753464166498" duration="1913000" />
+      <workItem from="1753651210692" duration="288000" />
     </task>
     <task id="LOCAL-00001" summary="1 base">
       <option name="closed" value="true" />
@@ -203,7 +194,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1 base" />
-    <option name="LAST_COMMIT_MESSAGE" value="1 base" />
+    <MESSAGE value="coloquei a api do whatssap&#10;&#10;ele pega nos produtodos do fornecedor que o meu nr da movitele e passa paro o grupo1 para vendas&#10;&#10;agoara vamos implementar IA" />
+    <MESSAGE value="o bot agoara pega nos produtos do fornecedor autorizado e manda para a IA do proprio whatssapp e ele edita e logo depois o bot pega amensagem da IA e manda para o grupo de vendas" />
+    <option name="LAST_COMMIT_MESSAGE" value="o bot agoara pega nos produtos do fornecedor autorizado e manda para a IA do proprio whatssapp e ele edita e logo depois o bot pega amensagem da IA e manda para o grupo de vendas" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BOT$pytest_for_test_db_test_connection.coverage" NAME="pytest for test_db.test_connection Coverage Results" MODIFIED="1752112246369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />

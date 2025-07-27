@@ -1,9 +1,26 @@
-const { sendProductToAPI } = require('../services/apiService');
-const { fornecedores, grupoDestino } = require('../config');
+const { fornecedores, iaNumber, promptIA, grupoVendas } = require('../config');
+
+async function aguardarRespostaIA(client, iaNumber, ultimoIdAntes, timeoutMs = 30000, intervaloMs = 3000) {
+  const inicio = Date.now();
+
+  while (Date.now() - inicio < timeoutMs) {
+    const mensagens = await client.getAllMessagesInChat(iaNumber, true, true);
+    for (let i = mensagens.length - 1; i >= 0; i--) {
+      const msg = mensagens[i];
+      if (msg.id === ultimoIdAntes) break;
+      if (!msg.fromMe && msg.type === 'chat' && msg.body?.trim().length > 0) {
+        return msg.body.trim();
+      }
+    }
+    await new Promise(resolve => setTimeout(resolve, intervaloMs));
+  }
+
+  return null;
+}
 
 module.exports = async function handleIncomingMessage(message, client) {
   try {
-    if (message.isGroupMsg) return 'ignorado';
+    if (message.isGroupMsg) return { status: 'ignorado' };
 
     const remetente = message.sender.id;
     const body = message.body?.trim() || '';
@@ -11,12 +28,12 @@ module.exports = async function handleIncomingMessage(message, client) {
 
     if (!fornecedores.includes(remetente)) {
       console.log(`🚫 Mensagem de remetente não autorizado: ${remetente}`);
-      return 'ignorado';
+      return { status: 'ignorado' };
     }
 
     if (!body && !image) {
       console.log(`⚠️ Mensagem vazia de ${remetente}`);
-      return 'ignorado';
+      return { status: 'ignorado' };
     }
 
     const produto = {
@@ -34,20 +51,30 @@ module.exports = async function handleIncomingMessage(message, client) {
       produto.midias.push({ url });
     }
 
-    // 🔁 Envia para API
-    await sendProductToAPI(produto);
+    const msgsAntes = await client.getAllMessagesInChat(iaNumber, true, true);
+    const ultimoIdAntes = msgsAntes.length > 0 ? msgsAntes[msgsAntes.length - 1].id : null;
 
-    // 📤 Reencaminha para grupo
-    const legenda = `📦 Produto de fornecedor: ${produto.fornecedor_nome}\n\n${produto.descricao}`;
-    if (produto.midias.length > 0) {
-      await client.sendImage(grupoDestino, produto.midias[0].url, 'produto.jpg', legenda);
+    const textoParaIA = `${promptIA}\n\n${body}`;
+    if (image) {
+      await client.sendImage(iaNumber, produto.midias[0].url, 'produto.jpg', textoParaIA);
     } else {
-      await client.sendText(grupoDestino, legenda);
+      await client.sendText(iaNumber, textoParaIA);
     }
 
-    return 'reenviado';
+    const novaResposta = await aguardarRespostaIA(client, iaNumber, ultimoIdAntes);
+
+    if (novaResposta) {
+      console.log('🧠 Resposta da IA:', novaResposta);
+      await client.sendText(grupoVendas, novaResposta);
+      return { status: 'reenviado' };
+    } else {
+      console.log('⚠️ IA não respondeu a tempo.');
+      await client.sendText(remetente, '⚠️ A IA não respondeu. Tente de novo em 1 minuto.');
+      return { status: 'erro' };
+    }
   } catch (error) {
     console.error('❌ Erro em handleIncomingMessage:', error);
-    return 'erro';
+    await client.sendText(message.from, '❌ Ocorreu um erro ao processar sua mensagem.');
+    return { status: 'erro' };
   }
 };
